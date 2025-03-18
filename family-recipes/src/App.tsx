@@ -12,6 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import Home from "./components/home/Home";
+import LoginAndSignup from "./components/login-and-signup/LoginAndSignup";
 import { Route, Routes } from "react-router-dom";
 
 function App() {

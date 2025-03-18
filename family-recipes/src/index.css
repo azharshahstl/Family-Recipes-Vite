@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
 @import "tailwindcss";
-@import "tailwindcss/preflight";
-@tailwind utilities;
 
 * {
   padding: 0;
@@ -16,32 +14,18 @@
     font-style: normal;
     font-size: 120px;
   }
-
-  .sheen:after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    bottom: -50%;
-    left: -50%;
-    background: linear-gradient(
-      to bottom,
-      rgba(229, 172, 142, 0),
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(229, 172, 142, 0)
-    );
-  }
-
-  .sheen:hover::after,
-  .sheen:focus::after {
-    animation: sheen 1s forwards infinite;
-  }
 }
 
-@keyframes sheen {
-  100% {
-    transform: rotateZ(360deg) translate(1em, -9em);
-  }
+.i-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.i-button:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px 5px 0px rgb(44, 43, 77);
 }
 
 :root {
