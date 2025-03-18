@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
 @import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
 * {
   padding: 0;
@@ -28,7 +30,6 @@
       rgba(255, 255, 255, 0.5) 50%,
       rgba(229, 172, 142, 0)
     );
-    transform: rotateZ(60deg) translate(-5em, 7.5em);
   }
 
   .sheen:hover::after,
@@ -39,7 +40,7 @@
 
 @keyframes sheen {
   100% {
-    transform: rotateZ(60deg) translate(1em, -9em);
+    transform: rotateZ(360deg) translate(1em, -9em);
   }
 }
 
