@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDyAbkesIz-taYCJDhaDfjO-9hoGmW65jc",
+  apiKey: process.env.API_KEY,
   authDomain: "family-recipes-cb537.firebaseapp.com",
   projectId: "family-recipes-cb537",
   storageBucket: "family-recipes-cb537.firebasestorage.app",
