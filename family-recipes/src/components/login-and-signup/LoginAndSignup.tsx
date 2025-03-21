@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { auth, googleAuthProvider } from "../../config/firebase.ts";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-
+import GoogleLogIn from "../buttons/GoogleLogIn.tsx";
 interface LoginAndSignupProps {
   ref?: React.Ref<HTMLDialogElement>;
   toggleModal: () => void;
@@ -10,13 +10,13 @@ interface LoginAndSignupProps {
 const LoginAndSignup = (props: LoginAndSignupProps) => {
   const { ref, toggleModal } = props;
 
-  const handleSignInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleAuthProvider);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleSignInWithGoogle = async () => {
+  //   try {
+  //     await signInWithPopup(auth, googleAuthProvider);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <dialog
@@ -28,27 +28,7 @@ const LoginAndSignup = (props: LoginAndSignupProps) => {
     >
       <div className="flex flex-col p-3">
         <div className="m-6 self-center rounded-md bg-yellow-200">
-          <button
-            onClick={handleSignInWithGoogle}
-            className="m-4 inline-flex text-sm text-gray-800 hover:animate-pulse hover:text-black dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500"
-            aria-label="Sign in witt g Mail"
-          >
-            Sign In with G-Mail
-            <svg
-              className="width-4 shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m15 18 6-6-6-6" />
-            </svg>
-          </button>
+          <GoogleLogIn toggleModal={toggleModal} />
         </div>
         <div className="m-6 self-center rounded-md bg-yellow-200">
           <Link
