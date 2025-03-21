@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { auth, googleAuthProvider } from "../../config/firebase.ts";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 interface LoginAndSignupProps {
   ref?: React.Ref<HTMLDialogElement>;
@@ -7,6 +9,14 @@ interface LoginAndSignupProps {
 
 const LoginAndSignup = (props: LoginAndSignupProps) => {
   const { ref, toggleModal } = props;
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleAuthProvider);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <dialog
@@ -18,11 +28,10 @@ const LoginAndSignup = (props: LoginAndSignupProps) => {
     >
       <div className="flex flex-col p-3">
         <div className="m-6 self-center rounded-md bg-yellow-200">
-          <Link
-            to="sign-in-with-google"
+          <button
+            onClick={handleSignInWithGoogle}
             className="m-4 inline-flex text-sm text-gray-800 hover:animate-pulse hover:text-black dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500"
-            onClick={toggleModal}
-            aria-label="Sign in wit g Mail"
+            aria-label="Sign in witt g Mail"
           >
             Sign In with G-Mail
             <svg
@@ -33,13 +42,13 @@ const LoginAndSignup = (props: LoginAndSignupProps) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="m15 18 6-6-6-6" />
             </svg>
-          </Link>
+          </button>
         </div>
         <div className="m-6 self-center rounded-md bg-yellow-200">
           <Link
@@ -57,9 +66,9 @@ const LoginAndSignup = (props: LoginAndSignupProps) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="m15 18 6-6-6-6" />
             </svg>
@@ -81,9 +90,9 @@ const LoginAndSignup = (props: LoginAndSignupProps) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="m15 18 6-6-6-6" />
             </svg>

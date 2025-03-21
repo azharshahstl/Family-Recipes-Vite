@@ -14,6 +14,7 @@ import {
 import Home from "./components/home/Home";
 import LoginAndSignup from "./components/login-and-signup/LoginAndSignup";
 import { Route, Routes } from "react-router-dom";
+import NotFound from "./components/not-found/NotFound";
 
 function App() {
   // const [recipes, setRecipes] = useState([]);
@@ -112,6 +113,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
