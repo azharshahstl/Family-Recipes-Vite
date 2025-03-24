@@ -16,6 +16,7 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./components/not-found/NotFound";
 import TotalRecipes from "./components/recipes/TotalRecipes";
 import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
+import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
 
 function App() {
   // const [recipes, setRecipes] = useState([]);
@@ -115,7 +116,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/recipes" element={<TotalRecipes />} />
-      <Route path="sign-in-with-email" element={<SignInWithEmail />} />
+      <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
+      <Route path="/create-account" element={<SignUpWithEmail />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

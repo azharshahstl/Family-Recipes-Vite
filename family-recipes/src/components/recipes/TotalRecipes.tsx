@@ -1,6 +1,7 @@
 import { auth } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import NotFound from "../not-found/NotFound.tsx";
 
 const TotalRecipes = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const TotalRecipes = () => {
           <button onClick={handleSignOut}>Sign out</button>
         </>
       );
-    } else return <>Could not log you in</>;
+    } else return <NotFound />;
   };
 
   return renderRecipes();

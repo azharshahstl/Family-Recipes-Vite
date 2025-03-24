@@ -1,20 +1,23 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { auth } from "../../config/firebase.ts";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
 
-const SignInWithEmail = () => {
+const SignUpWithEmail = () => {
   const emailRef = useRef<HTMLInputElement>(null);
 
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
-  const signIn = async () => {
+  const signIn = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const email = emailRef.current!.value;
 
     const password = passwordRef.current!.value;
+
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await navigate("/recipes");
@@ -25,16 +28,16 @@ const SignInWithEmail = () => {
   };
 
   return (
-    <>
+    <form onSubmit={signIn}>
       <h1>Sign in with email</h1>
       <br />
-      <input placeholder="email" />
+      <input ref={emailRef} placeholder="email" />
       <br />
-      <input type="password" placeholder="password" />
+      <input ref={passwordRef} type="password" placeholder="password" />
       <br />
-      <button onClick={signIn}>sign in</button>
-    </>
+      <button type="submit">sign in</button>
+    </form>
   );
 };
 
-export default SignInWithEmail;
+export default SignUpWithEmail;
