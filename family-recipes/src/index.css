@@ -14,10 +14,6 @@
   }
 }
 
-dialog {
-  margin: revert;
-}
-
 @theme {
   --animate-fade-in-scale: fade-in-scale 0.5s ease-in-out;
 

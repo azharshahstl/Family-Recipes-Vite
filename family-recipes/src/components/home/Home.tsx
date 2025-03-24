@@ -1,30 +1,45 @@
-import { useRef } from "react";
-import LoginAndSignup from "../login-and-signup/LoginAndSignup";
+import { Link } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleAuthProvider } from "../../config/firebase.ts";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const modalRef = useRef<HTMLDialogElement>(null);
-
-  const toggleModal = () => {
-    if (!modalRef.current) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    modalRef.current.hasAttribute("open")
-      ? modalRef.current.close()
-      : modalRef.current.showModal();
+  const navigate = useNavigate();
+  const handleSignInWithGmail = async () => {
+    try {
+      await signInWithPopup(auth, googleAuthProvider);
+      await navigate("/recipes");
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   return (
-    <div className="flex h-lvh w-full items-center justify-center bg-[url(../../public/paper.jpg)]">
-      <div className="italianno-sm sm:text-9xl">Family Recipes</div>
-      <button
-        aria-label="Open sign up/in modal"
-        onClick={toggleModal}
-        className="group relative left-[-333px] top-[-32px] h-3.5 w-3.5 cursor-pointer overflow-hidden rounded-full bg-black text-white hover:bg-gradient-to-r hover:from-gray-600 hover:to-gray-400 hover:ring-2 hover:ring-gray-600 hover:ring-offset-2 max-[530px]:fixed max-[530px]:left-[180px] max-[530px]:top-[362px] sm:left-[-440px] sm:top-[-38px]"
-      >
-        <span className="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-700 group-hover:-translate-x-40"></span>
-        <span className="relative"></span>
-      </button>
-      <LoginAndSignup ref={modalRef} toggleModal={toggleModal} />
+    <div className="italianno-sm flex h-lvh w-full flex-col items-center justify-center bg-[url(/paper.jpg)]">
+      <div className="mb-14 text-center leading-none sm:mb-4 sm:text-9xl sm:leading-48">
+        Family Recipes
+      </div>
+      <div className="flex flex-col">
+        <Link
+          onClick={handleSignInWithGmail}
+          className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
+          to="/recipes"
+        >
+          - 1 heaping cup of<u className="decoration-1"> sign in with G-mail</u>
+        </Link>
+        <Link
+          className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
+          to="/sign-in-with-email"
+        >
+          - 2 tablespoons of finely ground
+          <u className="decoration-1"> sign in with E-mail</u>
+        </Link>
+        <Link
+          className="text-2xl hover:animate-bounce sm:text-3xl"
+          to="/create-account"
+        >
+          - 3 handfuls of<u className="decoration-1"> create log in</u>
+        </Link>
+      </div>
     </div>
   );
 };
