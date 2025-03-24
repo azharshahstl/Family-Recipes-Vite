@@ -1,7 +1,5 @@
-import { Navigate } from "react-router-dom";
-
 const NotFound = () => {
-  return <Navigate to="/" />;
+  return <div>Unable to log you in</div>;
 };
 
 export default NotFound;
