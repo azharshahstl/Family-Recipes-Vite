@@ -28,38 +28,40 @@ const SignUpWithEmail = () => {
   };
 
   return (
-    <div className="relative top-50">
-      <form className="flex justify-center align-middle" onSubmit={signUp}>
-        <div className="mt-4 mr-4 ml-4 flex w-52 flex-col sm:mr-20 sm:ml-20">
-          <h1 className="text-center">Sign up with email</h1>
-          <br />
-          <input
-            aria-label="email"
-            autoComplete="true"
-            className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
-            placeholder="email"
-            ref={emailRef}
-            required
-          />
-          <br />
-          <input
-            aria-label="password"
-            autoComplete="true"
-            className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
-            placeholder="password"
-            ref={passwordRef}
-            type="password"
-            required
-          />
-          <br />
-          <button
-            className="rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300"
-            type="submit"
-          >
-            sign up
-          </button>
-        </div>
-      </form>
+    <div className="h-screen bg-gray-50">
+      <div className="relative top-50">
+        <form className="flex justify-center align-middle" onSubmit={signUp}>
+          <div className="mt-4 mr-4 ml-4 flex w-52 flex-col sm:mr-20 sm:ml-20">
+            <h1 className="text-center">Sign up with email</h1>
+            <br />
+            <input
+              aria-label="email"
+              autoComplete="true"
+              className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
+              placeholder="email"
+              ref={emailRef}
+              required
+            />
+            <br />
+            <input
+              aria-label="password"
+              autoComplete="true"
+              className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
+              placeholder="password"
+              ref={passwordRef}
+              type="password"
+              required
+            />
+            <br />
+            <button
+              className="rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300"
+              type="submit"
+            >
+              create account
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

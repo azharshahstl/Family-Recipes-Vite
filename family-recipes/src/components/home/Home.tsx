@@ -55,7 +55,7 @@ const Home = () => {
             className="text-2xl hover:animate-bounce sm:text-3xl"
             to="/create-account"
           >
-            - 3 handfuls of<u className="decoration-1"> create sign in</u>
+            - 3 handfuls of<u className="decoration-1"> create account</u>
           </Link>
         </div>
       </div>
