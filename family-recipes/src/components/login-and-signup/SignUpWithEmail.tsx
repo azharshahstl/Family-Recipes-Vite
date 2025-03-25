@@ -34,20 +34,26 @@ const SignUpWithEmail = () => {
           <h1 className="text-center">Sign up with email</h1>
           <br />
           <input
+            aria-label="email"
+            autoComplete="true"
             className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
-            ref={emailRef}
             placeholder="email"
+            ref={emailRef}
+            required
           />
           <br />
           <input
+            aria-label="password"
+            autoComplete="true"
             className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
+            placeholder="password"
             ref={passwordRef}
             type="password"
-            placeholder="password"
+            required
           />
           <br />
           <button
-            className="rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:bg-amber-300"
+            className="rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300"
             type="submit"
           >
             sign up
