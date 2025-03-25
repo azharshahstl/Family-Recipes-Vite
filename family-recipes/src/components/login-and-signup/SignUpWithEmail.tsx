@@ -34,13 +34,13 @@ const SignUpWithEmail = () => {
           <h1 className="text-center">Sign up with email</h1>
           <br />
           <input
-            className="rounded-b-xs border-1 border-amber-300 p-1"
+            className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
             ref={emailRef}
             placeholder="email"
           />
           <br />
           <input
-            className="rounded-b-xs border-1 border-amber-300 p-1"
+            className="rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100"
             ref={passwordRef}
             type="password"
             placeholder="password"
