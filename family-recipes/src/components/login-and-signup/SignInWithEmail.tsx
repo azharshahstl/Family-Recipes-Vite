@@ -17,9 +17,9 @@ const SignInWithEmail = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/recipes");
+      await navigate("/recipes");
     } catch {
-      navigate("/*");
+      await navigate("/*");
     }
   };
 

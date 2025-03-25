@@ -2,9 +2,15 @@ import { auth } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import NotFound from "../not-found/NotFound.tsx";
+import { useFamilyRecipesContext } from "../context/contex.ts";
 
 const TotalRecipes = () => {
+  const { currentUser } = useFamilyRecipesContext();
+
+  console.log(currentUser);
+
   const navigate = useNavigate();
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -15,7 +21,7 @@ const TotalRecipes = () => {
   };
 
   const renderRecipes = () => {
-    if (auth.currentUser !== null) {
+    if (currentUser !== null) {
       return (
         <>
           <h1>Recipes Page</h1>

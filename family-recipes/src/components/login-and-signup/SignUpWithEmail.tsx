@@ -11,7 +11,7 @@ const SignUpWithEmail = () => {
 
   const navigate = useNavigate();
 
-  const signIn = async (e: FormEvent<HTMLFormElement>) => {
+  const signUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const email = emailRef.current!.value;
@@ -28,15 +28,33 @@ const SignUpWithEmail = () => {
   };
 
   return (
-    <form onSubmit={signIn}>
-      <h1>Sign in with email</h1>
-      <br />
-      <input ref={emailRef} placeholder="email" />
-      <br />
-      <input ref={passwordRef} type="password" placeholder="password" />
-      <br />
-      <button type="submit">sign in</button>
-    </form>
+    <div className="relative top-50">
+      <form className="flex justify-center align-middle" onSubmit={signUp}>
+        <div className="mt-4 mr-4 ml-4 flex w-52 flex-col sm:mr-20 sm:ml-20">
+          <h1 className="text-center">Sign up with email</h1>
+          <br />
+          <input
+            className="rounded-b-xs border-1 border-amber-300 p-1"
+            ref={emailRef}
+            placeholder="email"
+          />
+          <br />
+          <input
+            className="rounded-b-xs border-1 border-amber-300 p-1"
+            ref={passwordRef}
+            type="password"
+            placeholder="password"
+          />
+          <br />
+          <button
+            className="rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:bg-amber-300"
+            type="submit"
+          >
+            sign up
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Italianno&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 * {
@@ -42,5 +43,6 @@
 }
 
 :root {
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 350;
 }
