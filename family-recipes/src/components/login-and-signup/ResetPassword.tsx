@@ -7,20 +7,26 @@ import { useNavigate } from "react-router-dom";
 const ResetPassword = () => {
   const emailRef = useRef<HTMLInputElement>(null);
 
+  const modalRef = useRef<HTMLDialogElement>(null);
+
   const navigate = useNavigate();
 
   const resetPassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const email = emailRef.current!.value;
 
     try {
       await sendPasswordResetEmail(auth, email);
-      await navigate("/password-reset-modal");
+      modalRef.current?.showModal();
     } catch (err) {
       console.log(err);
       navigate("/*");
     }
+  };
+
+  const closeModal = () => {
+    modalRef.current?.close();
+    navigate("/");
   };
 
   return (
@@ -49,6 +55,18 @@ const ResetPassword = () => {
               reset password
             </button>
           </div>
+          <dialog
+            className="absolute top-7 left-7 backdrop:backdrop-blur-xs"
+            ref={modalRef}
+          >
+            <div>Check your email for the link to reset your password.</div>
+            <button
+              className="mt-3 mb-3 rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+              onClick={closeModal}
+            >
+              close modal
+            </button>
+          </dialog>
         </form>
       </div>
     </div>
