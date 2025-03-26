@@ -17,7 +17,8 @@ import NotFound from "./components/not-found/NotFound";
 import TotalRecipes from "./components/recipes/TotalRecipes";
 import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
 import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
-
+import ResetPassword from "./components/login-and-signup/ResetPassword";
+import PasswordResetModal from "./components/login-and-signup/PasswordResetModal";
 function App() {
   // const [recipes, setRecipes] = useState([]);
 
@@ -118,6 +119,8 @@ function App() {
       <Route path="/recipes" element={<TotalRecipes />} />
       <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
       <Route path="/create-account" element={<SignUpWithEmail />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/password-reset-modal" element={<PasswordResetModal />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
