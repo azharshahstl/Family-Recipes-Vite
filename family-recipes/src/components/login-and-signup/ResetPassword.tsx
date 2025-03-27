@@ -25,8 +25,21 @@ const ResetPassword = () => {
   };
 
   const closeModal = () => {
-    modalRef.current?.close();
     navigate("/");
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    modalRef.current?.hasAttribute("open")
+      ? modalRef.current.close()
+      : modalRef.current?.showModal();
+  };
+
+  const closeModalOnBackgroundClick = (
+    e: React.MouseEvent<HTMLDialogElement>,
+  ) => {
+    if (e.target === e.currentTarget) {
+      modalRef.current?.close();
+      navigate("/");
+    }
   };
 
   return (
@@ -56,16 +69,25 @@ const ResetPassword = () => {
             </button>
           </div>
           <dialog
-            className="absolute top-7 left-7 backdrop:backdrop-blur-xs"
+            onClick={closeModalOnBackgroundClick}
+            className="dialog backdrop:backdrop-blur-xs"
             ref={modalRef}
           >
-            <div>Check your email for the link to reset your password.</div>
-            <button
-              className="mt-3 mb-3 rounded-b-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
-              onClick={closeModal}
-            >
-              close modal
-            </button>
+            <div className="flex flex-col">
+              <button
+                onClick={closeModal}
+                className="mt-2 mr-2 size-5.5 self-end rounded-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+                aria-label="Close"
+                type="button"
+              >
+                <svg height="26px" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                </svg>
+              </button>
+              <div className="m-3 text-center">
+                Check your email for the link to reset your password.
+              </div>
+            </div>
           </dialog>
         </form>
       </div>
