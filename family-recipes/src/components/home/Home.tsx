@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, googleAuthProvider } from "../../config/firebase.ts";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FamilyRecipesContext } from "../context/contex.ts";
+import { FamilyRecipesContext } from "../context/context.ts";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState<string | undefined | null>(
@@ -12,21 +12,22 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleSignInWithGmail = async () => {
-    try {
-      await signInWithPopup(auth, googleAuthProvider);
-      await navigate("/recipes");
-    } catch (err) {
-      console.log(err);
-    }
+  const handleSignInWithGmail = () => {
+    signInWithPopup(auth, googleAuthProvider).then((result) => {
+      const userEmail = result.user.email;
+      if (userEmail !== "") {
+        console.log("email", userEmail);
+        setCurrentUser(userEmail);
+        navigate("/recipes");
+      } else {
+        navigate("/*");
+      }
+    });
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user?.email);
-
-      return unsubscribe;
-    });
+    const unsubscribe = auth.onAuthStateChanged(() => {});
+    return unsubscribe;
   }, []);
 
   return (
@@ -39,7 +40,7 @@ const Home = () => {
           <Link
             onClick={handleSignInWithGmail}
             className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
-            to="/recipes"
+            to={currentUser ? "/recipes" : "/*"}
           >
             - 1 heaping cup of
             <u className="decoration-1"> sign in with G-mail</u>
