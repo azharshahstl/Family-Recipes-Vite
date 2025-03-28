@@ -56,7 +56,7 @@ const ResetPassword = () => {
             <input
               aria-label="email"
               autoComplete="true"
-              className="mt-3 mb-3 rounded-b-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
+              className="mt-3 mb-3 rounded-md border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
               placeholder="email"
               ref={emailRef}
               required

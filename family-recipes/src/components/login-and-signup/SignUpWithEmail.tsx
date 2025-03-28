@@ -55,7 +55,7 @@ const SignUpWithEmail = () => {
             <input
               aria-label="email"
               autoComplete="true"
-              className="mt-3 mb-3 rounded-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
+              className="mt-3 mb-3 rounded-md border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
               placeholder="email"
               ref={emailRef}
               required
@@ -63,7 +63,7 @@ const SignUpWithEmail = () => {
             <input
               aria-label="password"
               autoComplete="true"
-              className="mt-3 mb-1 rounded-xs border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
+              className="mt-3 mb-1 rounded-md border-1 border-amber-300 p-1 hover:bg-amber-100 focus-visible:bg-amber-100 focus-visible:outline-amber-500"
               placeholder="password"
               onChange={(e) => {
                 handleUpdatePassword(e);
@@ -73,7 +73,7 @@ const SignUpWithEmail = () => {
             />
             {handleRenderHelperText()}
             <button
-              className="mt-3 mb-3 rounded-xs border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+              className="mt-3 mb-3 rounded-md border-1 border-amber-300 bg-amber-100 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
               type="submit"
             >
               create account
