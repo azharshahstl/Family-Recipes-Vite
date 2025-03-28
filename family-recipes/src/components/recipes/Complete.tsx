@@ -21,8 +21,8 @@ const Complete = () => {
   const renderRecipes = () => {
     if (currentUser !== null) {
       return (
-        <div className="flex flex-col">
-          <div className="flex flex-col bg-gray-50">
+        <div className="flex flex-col bg-gray-50">
+          <div className="flex flex-col">
             <button
               onClick={handleSignOut}
               className="m-3 self-end rounded-md border-1 border-amber-300 bg-amber-100 p-1 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
@@ -33,26 +33,26 @@ const Complete = () => {
           </div>
           <div className="flex justify-center">
             <button
-              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:bg-amber-300 focus-visible:outline-amber-500"
               type="submit"
             >
               Show personal recipes
             </button>
             <button
-              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:bg-amber-300 focus-visible:outline-amber-500"
               type="submit"
             >
               Show public recipes
             </button>
             <button
-              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500"
+              className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 hover:bg-amber-300 focus-visible:outline-amber-500"
               type="submit"
             >
               show all recipes
             </button>
           </div>
           <main className="flex flex-col items-center justify-center">
-            <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/annie-spratt-cloth-with-stain-unsplash.jpg)] shadow-lg">
+            <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/annie-spratt-cloth-with-stain-unsplash.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
               <div className="backdrop-brightness-150">
                 <div className="px-6 py-4">
                   <div className="mb-2 text-xl font-bold">
