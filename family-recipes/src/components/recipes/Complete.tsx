@@ -1,11 +1,11 @@
 import { auth } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import NotFound from "../not-found/NotFound.tsx";
 import { useFamilyRecipesContext } from "../context/context.ts";
+import Loader from "../loader/Loader.tsx";
 
 const Complete = () => {
-  const { currentUser } = useFamilyRecipesContext();
+  const { isLoading } = useFamilyRecipesContext();
 
   const navigate = useNavigate();
 
@@ -19,7 +19,9 @@ const Complete = () => {
   };
 
   const renderRecipes = () => {
-    console.log("current user", currentUser);
+    {
+      if (isLoading) <Loader />;
+    }
     return (
       <div className="flex flex-col bg-gray-50">
         <div className="flex flex-col">

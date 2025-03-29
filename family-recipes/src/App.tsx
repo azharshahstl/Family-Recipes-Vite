@@ -19,6 +19,7 @@ import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
 import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
 import ResetPassword from "./components/login-and-signup/ResetPassword";
 import PasswordResetModal from "./components/login-and-signup/PasswordResetModal";
+import Loader from "./components/loader/Loader";
 function App() {
   // const [recipes, setRecipes] = useState([]);
 
@@ -121,7 +122,7 @@ function App() {
       <Route path="/create-account" element={<SignUpWithEmail />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/password-reset-modal" element={<PasswordResetModal />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Loader />} />
     </Routes>
   );
 }
