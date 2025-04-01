@@ -1,8 +1,34 @@
+import { collection, getDocs } from "firebase/firestore";
 import { useFamilyRecipesContext } from "../context/context.ts";
 import Loader from "../loader/Loader.tsx";
+import { db } from "../../config/firebase.ts";
+import { useEffect, useState } from "react";
 
 const All = () => {
   const { isLoading } = useFamilyRecipesContext();
+
+  const [recipes, setRecipes] = useState<{ id: string }[]>([]);
+
+  const recipesCollectionRef = collection(db, "recipes");
+
+  useEffect(() => {
+    const getRecipes = async () => {
+      try {
+        const recipeData = await getDocs(recipesCollectionRef);
+        const allRecipes = recipeData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setRecipes(allRecipes);
+        console.log(allRecipes);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getRecipes();
+  }, []);
 
   const renderRecipes = () => {
     {
