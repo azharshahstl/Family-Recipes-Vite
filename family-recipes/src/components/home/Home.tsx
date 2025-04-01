@@ -40,21 +40,21 @@ const Home = () => {
         <div className="flex flex-col">
           <Link
             onClick={handleSignInWithGmail}
-            className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
+            className="mb-1 text-2xl hover:animate-pulse sm:text-3xl"
             to=""
           >
             - 1 heaping cup of
             <u className="decoration-1"> sign in with G-mail</u>
           </Link>
           <Link
-            className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
+            className="mb-1 text-2xl hover:animate-pulse sm:text-3xl"
             to="/sign-in-with-email"
           >
             - 2 tablespoons of finely ground
             <u className="decoration-1"> sign in with E-mail</u>
           </Link>
           <Link
-            className="text-2xl hover:animate-bounce sm:text-3xl"
+            className="text-2xl hover:animate-pulse sm:text-3xl"
             to="/create-account"
           >
             - 3 handfuls of<u className="decoration-1"> create account</u>
