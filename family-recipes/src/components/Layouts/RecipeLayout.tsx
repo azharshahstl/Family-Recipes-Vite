@@ -24,9 +24,9 @@ const RecipeLayout = () => {
             className="HAMBURGER-ICON space-y-2"
             onClick={() => setIsNavOpen((prev) => !prev)}
           >
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-800"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-800"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-800"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-amber-700"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-amber-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-amber-500"></span>
           </div>
 
           <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
