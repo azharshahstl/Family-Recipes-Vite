@@ -20,7 +20,7 @@ const Home = () => {
       if (userEmail) {
         console.log("email", result);
         setCurrentUser(userEmail);
-        navigate("/recipes");
+        navigate("/recipes/all");
       }
       setIsLoading(false);
     });
@@ -41,7 +41,7 @@ const Home = () => {
           <Link
             onClick={handleSignInWithGmail}
             className="mb-1 text-2xl hover:animate-bounce sm:text-3xl"
-            to={currentUser ? "/recipes" : "/*"}
+            to=""
           >
             - 1 heaping cup of
             <u className="decoration-1"> sign in with G-mail</u>

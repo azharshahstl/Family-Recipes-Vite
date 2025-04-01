@@ -1,61 +1,18 @@
-import { auth } from "../../config/firebase.ts";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useFamilyRecipesContext } from "../context/context.ts";
 import Loader from "../loader/Loader.tsx";
 
-const Complete = () => {
+const All = () => {
   const { isLoading } = useFamilyRecipesContext();
-
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      await navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const renderRecipes = () => {
     {
       if (isLoading) <Loader />;
     }
     return (
-      <div className="flex flex-col bg-gray-50">
-        <div className="flex flex-col">
-          <button
-            onClick={handleSignOut}
-            className="m-3 self-end rounded-md border-1 border-amber-300 bg-amber-100 p-1 text-xs hover:animate-bounce hover:bg-amber-300 focus-visible:outline-amber-500 sm:text-base"
-            type="submit"
-          >
-            signout
-          </button>
-        </div>
-        <div className="flex justify-center">
-          <button
-            className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 text-xs hover:bg-amber-300 focus-visible:outline-amber-500 sm:text-base"
-            type="submit"
-          >
-            Show personal recipes
-          </button>
-          <button
-            className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 text-xs hover:bg-amber-300 focus-visible:outline-amber-500 sm:text-base"
-            type="submit"
-          >
-            Show public recipes
-          </button>
-          <button
-            className="m-3 self-end rounded-full border-1 border-amber-300 bg-amber-100 p-2 text-xs hover:bg-amber-300 focus-visible:outline-amber-500 sm:text-base"
-            type="submit"
-          >
-            show every recipe
-          </button>
-        </div>
+      <div className="flex flex-col bg-gray-200">
         <main className="flex flex-col items-center justify-center">
-          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/annie-spratt-cloth-with-stain-unsplash.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
-            <div className="backdrop-brightness-150">
+          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
+            <div>
               <div className="px-6 py-4">
                 <div className="mb-2 text-xl font-bold">The Coldest Sunset</div>
                 <p className="text-base text-gray-950">
@@ -77,10 +34,10 @@ const Complete = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-sm overflow-hidden rounded shadow-lg">
+          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
             <div className="px-6 py-4">
               <div className="mb-2 text-xl font-bold">The Coldest Sunset</div>
-              <p className="text-base text-gray-700">
+              <p className="text-base text-gray-950">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptatibus quia, nulla! Maiores et perferendis eaque,
                 exercitationem praesentium nihil.
@@ -98,7 +55,7 @@ const Complete = () => {
               </span>
             </div>
           </div>
-          <div className="max-w-sm overflow-hidden rounded shadow-lg">
+          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
             <div className="px-6 py-4">
               <div className="mb-2 text-xl font-bold">The Coldest Sunset</div>
               <p className="text-base text-gray-700">
@@ -148,4 +105,4 @@ const Complete = () => {
   return renderRecipes();
 };
 
-export default Complete;
+export default All;

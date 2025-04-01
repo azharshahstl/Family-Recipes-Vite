@@ -14,12 +14,15 @@ import {
 import Home from "./components/home/Home";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./components/not-found/NotFound";
-import Complete from "./components/recipes/Complete";
+import All from "./components/recipes/All";
 import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
 import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
 import ResetPassword from "./components/login-and-signup/ResetPassword";
 import PasswordResetModal from "./components/login-and-signup/PasswordResetModal";
 import Loader from "./components/loader/Loader";
+import Personal from "./components/recipes/private/Personal";
+import Public from "./components/recipes/public/Public";
+import RecipeLayout from "./components/Layouts/RecipeLayout";
 function App() {
   // const [recipes, setRecipes] = useState([]);
 
@@ -117,7 +120,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/recipes" element={<Complete />} />
+      <Route path="/recipes" element={<RecipeLayout />}>
+        <Route path="all" element={<All />} />
+        <Route path="personal" element={<Personal />} />
+        <Route path="public" element={<Public />} />
+      </Route>
       <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
       <Route path="/create-account" element={<SignUpWithEmail />} />
       <Route path="/reset-password" element={<ResetPassword />} />
