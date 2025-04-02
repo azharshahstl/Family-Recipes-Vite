@@ -1,7 +1,6 @@
 const Public = () => {
   return (
     <>
-      <h1>Public recipes</h1>
       <div className="flex h-screen flex-col bg-gray-200">
         <main className="flex flex-col items-center justify-center">
           <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">

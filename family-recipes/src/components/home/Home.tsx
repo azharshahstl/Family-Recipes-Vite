@@ -14,15 +14,15 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleSignInWithGmail = () => {
-    setIsLoading(true);
     signInWithPopup(auth, googleAuthProvider).then((result) => {
+      setIsLoading(true);
       const userEmail = result.user.email;
       if (userEmail) {
         console.log("email", result);
         setCurrentUser(userEmail);
         navigate("/recipes/all");
       }
-      setIsLoading(false);
+      // setIsLoading(false);
     });
   };
 
@@ -32,7 +32,9 @@ const Home = () => {
   }, []);
 
   return (
-    <FamilyRecipesContext.Provider value={{ currentUser, isLoading }}>
+    <FamilyRecipesContext.Provider
+      value={{ currentUser, isLoading, setIsLoading }}
+    >
       <div className="italianno-sm flex h-lvh w-full flex-col items-center justify-center bg-[url(/paper.jpg)]">
         <div className="mb-14 text-center leading-none sm:mb-4 sm:text-9xl sm:leading-48">
           Family Recipes

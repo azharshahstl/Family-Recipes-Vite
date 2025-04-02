@@ -20,7 +20,7 @@ const SignInWithEmail = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      await navigate("/recipes");
+      await navigate("/recipes/all");
     } catch (err) {
       console.log(err);
       navigate("/*");

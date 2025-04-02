@@ -18,7 +18,7 @@ const SignUpWithEmail = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      await navigate("/recipes");
+      await navigate("/recipes/all");
     } catch (err) {
       console.log(err);
       navigate("/*");
