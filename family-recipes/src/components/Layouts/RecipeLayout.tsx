@@ -114,6 +114,14 @@ const RecipeLayout = () => {
                 every recipe
                 <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
               </NavLink>
+              <button
+                onClick={handleSignOut}
+                className="group mr-4 ml-auto text-[15px] sm:text-[20px]"
+                type="button"
+              >
+                signout
+                <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
+              </button>
             </section>
           </div>
         </section>

@@ -1,14 +1,14 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, DocumentData, getDocs } from "firebase/firestore";
 import { useFamilyRecipesContext } from "../context/context.ts";
 import Loader from "../loader/Loader.tsx";
 import { db } from "../../config/firebase.ts";
 import { useEffect, useState } from "react";
-import Card from "./card/Card.tsx";
+import CardContainer from "./card-container/CardContainer.tsx";
 
 const All = () => {
   const { isLoading } = useFamilyRecipesContext();
 
-  const [recipes, setRecipes] = useState<{ id: string }[]>([]);
+  const [recipes, setRecipes] = useState<DocumentData>([]);
 
   const recipesCollectionRef = collection(db, "recipes");
 
@@ -37,8 +37,19 @@ const All = () => {
     }
     return (
       <main className="flex flex-col items-center justify-center bg-gray-200">
-        {recipes.map((recipe) => {
-          return <Card title={recipe.title} directions={recipe.directions} />;
+        {recipes.map((recipe: DocumentData) => {
+          return (
+            <CardContainer
+              cookTime={recipe.cookTime}
+              directions={recipe.directions}
+              ingredients={recipe.ingredients}
+              key={recipe.id}
+              foodCategory={recipe.foodCategory}
+              prepTime={recipe.prepTime}
+              rating={recipe.difficultyRating}
+              title={recipe.title}
+            />
+          );
         })}
       </main>
     );
