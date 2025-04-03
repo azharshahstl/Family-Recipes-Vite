@@ -36,7 +36,7 @@ const All = () => {
         return <Loader />;
       } else {
         return (
-          <main className="flex flex-col items-center justify-center bg-gray-200">
+          <main className="flex flex-col items-center justify-center bg-gray-200 p-4">
             {recipes.map((recipe: DocumentData) => {
               return (
                 <CardContainer
