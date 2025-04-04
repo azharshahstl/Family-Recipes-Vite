@@ -126,8 +126,10 @@ const RecipeLayout = () => {
             </div>
           </section>
           {/* Desktop menu */}
-          <div className="mb-4 hidden justify-between pt-5 align-middle sm:flex">
-            <span className="italianno-sm ml-4 self-center text-4xl">FR</span>
+          <div className="mb-4 hidden justify-evenly pt-5 align-middle sm:flex">
+            <span className="italianno-sm ml-4 self-center text-4xl">
+              Family Recipes
+            </span>
             <NavLink
               to="/recipes/personal"
               className={({ isActive }) =>
@@ -138,8 +140,6 @@ const RecipeLayout = () => {
                   "border-none",
                   "p-2",
                   "text-xs",
-                  "ml-auto",
-                  "mx-2",
                   "focus-visible:outline-amber-500",
                   "sm:text-base",
                   isActive ? "bg-amber-400" : "",
@@ -157,7 +157,6 @@ const RecipeLayout = () => {
                   "self-end",
                   "rounded-full",
                   "border-none",
-                  "mx-2",
                   "p-2",
                   "text-xs",
                   "focus-visible:outline-amber-500",
@@ -179,7 +178,6 @@ const RecipeLayout = () => {
                   "border-none",
                   "p-2",
                   "text-xs",
-                  "ml-2",
                   "focus-visible:outline-amber-500",
                   "sm:text-base",
                   isActive ? "bg-amber-400" : "",
@@ -191,7 +189,7 @@ const RecipeLayout = () => {
             </NavLink>
             <button
               onClick={handleSignOut}
-              className="group mr-4 ml-auto rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
+              className="group mr-4 rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
               type="button"
             >
               signout
@@ -215,7 +213,7 @@ const RecipeLayout = () => {
           </div>
           <button
             type="submit"
-            className="ms-2 rounded-full border border-amber-300 bg-gray-50 p-2.5 text-sm font-medium hover:bg-amber-100 focus:ring-4 focus-visible:outline-amber-500"
+            className="ms-2 rounded-full border border-amber-300 bg-gray-50 p-2.5 text-sm font-medium hover:bg-amber-100 focus-visible:outline-amber-500"
           >
             <svg
               className="h-3 w-3 text-black"
