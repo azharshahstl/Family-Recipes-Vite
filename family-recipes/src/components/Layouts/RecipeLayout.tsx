@@ -134,10 +134,9 @@ const RecipeLayout = () => {
                 [
                   "group",
                   "self-end",
-                  "rounded-full border-1",
+                  "rounded-full",
                   "border-none",
                   "p-2",
-                  "pl-[25px]",
                   "text-xs",
                   "ml-auto",
                   "mx-2",
@@ -156,7 +155,7 @@ const RecipeLayout = () => {
                 [
                   "group",
                   "self-end",
-                  "rounded-full border-1",
+                  "rounded-full",
                   "border-none",
                   "mx-2",
                   "p-2",
@@ -176,7 +175,7 @@ const RecipeLayout = () => {
                 [
                   "group",
                   "self-end",
-                  "rounded-full border-1",
+                  "rounded-full",
                   "border-none",
                   "p-2",
                   "text-xs",
@@ -192,7 +191,7 @@ const RecipeLayout = () => {
             </NavLink>
             <button
               onClick={handleSignOut}
-              className="group mr-4 ml-auto text-[15px] sm:text-[20px]"
+              className="group mr-4 ml-auto rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
               type="button"
             >
               signout
@@ -210,18 +209,17 @@ const RecipeLayout = () => {
             <input
               type="text"
               id="simple-search"
-              className="block w-full rounded-full border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus-visible:bg-amber-100 focus-visible:outline-amber-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              className="block w-full rounded-full border border-amber-300 bg-gray-50 p-1 ps-10 text-sm text-gray-900 focus-visible:outline-amber-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Search title..."
             />
           </div>
           <button
             type="submit"
-            className="ms-2 rounded-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="ms-2 rounded-full border border-amber-300 bg-gray-50 p-2.5 text-sm font-medium hover:bg-amber-100 focus:ring-4 focus-visible:outline-amber-500"
           >
             <svg
-              className="h-4 w-4"
+              className="h-3 w-3 text-black"
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 20 20"
             >
