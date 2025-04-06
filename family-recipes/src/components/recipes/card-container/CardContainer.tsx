@@ -24,11 +24,10 @@ const CardContainer = (props: CardProps) => {
 
   return (
     <div className="m-6">
-      <div className="max-h-[550px] min-h-[300px] w-[380px] rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 sm:w-[500px] sm:hover:animate-bounce">
-        <div className="px-6 py-4">
-          <div className="mb-2 text-xl font-bold">{title}</div>
-          <Ingredients ingredients={ingredients} />
-
+      <div className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 sm:w-[500px] sm:hover:animate-bounce">
+        <div className="mb-2 text-xl font-bold">{title}</div>
+        <Ingredients ingredients={ingredients} />
+        <div>
           <p className="font-semibold text-amber-950">directions:</p>
           <p className="ml-2 text-base text-gray-950">
             {directions.length < 150
@@ -36,7 +35,8 @@ const CardContainer = (props: CardProps) => {
               : directions.substring(0, 100) + "..."}
           </p>
         </div>
-        <div className="px-6 pt-4 pb-2">
+
+        <div>
           <FooterPill descriptor="difficulty" value={rating} />
           <FooterPill descriptor="category" value={foodCategory} />
           <FooterPill descriptor="prep time" value={prepTime} />

@@ -16,10 +16,10 @@ const Ingredients = (props: IngredientsProps) => {
 
   const renderIngredients = () => {
     return (
-      <>
+      <div>
         <p className="font-semibold text-amber-950">ingredients:</p>
         <p className="ml-2 pb-2">{createIngredientsString()}</p>
-      </>
+      </div>
     );
   };
 
