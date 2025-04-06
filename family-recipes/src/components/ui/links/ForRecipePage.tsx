@@ -1,7 +1,8 @@
+import { MouseEventHandler } from "react";
 import { NavLink } from "react-router-dom";
 
 interface RecipePageLinkProps {
-  handleOnClick?: () => void;
+  handleOnClick: MouseEventHandler<HTMLAnchorElement> | undefined | void;
   content: string;
   goTo: string;
   mobile?: boolean;
@@ -17,14 +18,13 @@ const RecipePageLink = (props: RecipePageLinkProps) => {
       className={({ isActive }) =>
         [
           "group",
-          "mr-1",
-          "self-center",
-          "rounded-full border-1",
+          "rounded-full",
           "border-none",
+          "text-center",
+          "self-center",
           "p-2",
           mobile ? "text-md" : "text-xs",
           mobile ? "uppercase" : "",
-          "ml-auto",
           "focus-visible:outline-amber-500",
           "sm:text-base",
           isActive ? "bg-amber-400" : "",

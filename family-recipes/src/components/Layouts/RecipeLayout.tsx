@@ -1,7 +1,8 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { useState } from "react";
+import RecipePageLink from "../ui/links/ForRecipePage.tsx";
 
 const RecipeLayout = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -21,7 +22,7 @@ const RecipeLayout = () => {
       <div className="sticky top-0 w-full bg-gray-200">
         <nav>
           {/* Mobile Menu */}
-          <section className="flex-row-reverse p-4 sm:hidden">
+          <section className="flex-row-reverse p-4 min-[600px]:hidden">
             <div
               className="HAMBURGER-ICON space-y-2"
               onClick={() => setIsNavOpen((prev) => !prev)}
@@ -49,71 +50,22 @@ const RecipeLayout = () => {
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </div>
-              <section className="flex min-h-[250px] flex-col justify-between">
-                <NavLink
-                  onClick={() => setIsNavOpen(false)}
-                  to="/recipes/personal"
-                  className={({ isActive }) =>
-                    [
-                      "group",
-                      "self-center",
-                      "rounded-full border-1",
-                      "border-none",
-                      "p-2",
-                      "text-md",
-                      "uppercase",
-                      "focus-visible:outline-amber-500",
-                      "sm:text-base",
-                      isActive ? "bg-amber-400" : "",
-                    ].join(" ")
-                  }
-                >
-                  personal recipes
-                  <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-                </NavLink>
-                <NavLink
-                  onClick={() => setIsNavOpen(false)}
-                  to="/recipes/public"
-                  className={({ isActive }) =>
-                    [
-                      "group",
-                      "self-center",
-                      "rounded-full border-1",
-                      "border-none",
-
-                      "p-2",
-                      "text-md",
-                      "uppercase",
-                      "focus-visible:outline-amber-500",
-                      "sm:text-base",
-                      isActive ? "bg-amber-400" : "",
-                    ].join(" ")
-                  }
-                >
-                  public recipes
-                  <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-                </NavLink>
-                <NavLink
-                  onClick={() => setIsNavOpen(false)}
-                  to="/recipes/all"
-                  className={({ isActive }) =>
-                    [
-                      "group",
-                      "self-center",
-                      "rounded-full border-1",
-                      "border-none",
-                      "p-2",
-                      "text-md",
-                      "uppercase",
-                      "focus-visible:outline-amber-500",
-                      "sm:text-base",
-                      isActive ? "bg-amber-400" : "",
-                    ].join(" ")
-                  }
-                >
-                  every recipe
-                  <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-                </NavLink>
+              <section className="flex min-h-[250px] flex-col justify-between align-middle">
+                <RecipePageLink
+                  handleOnClick={() => setIsNavOpen(false)}
+                  goTo="/recipes/personal"
+                  content="personal recipes"
+                />
+                <RecipePageLink
+                  handleOnClick={() => setIsNavOpen(false)}
+                  goTo="/recipes/public"
+                  content="public recipes"
+                />
+                <RecipePageLink
+                  handleOnClick={() => setIsNavOpen(false)}
+                  goTo="/recipes/all"
+                  content="every recipe"
+                />
                 <button
                   onClick={handleSignOut}
                   className="group mr-auto ml-auto text-[15px] sm:text-[20px]"
@@ -126,67 +78,28 @@ const RecipeLayout = () => {
             </div>
           </section>
           {/* Desktop menu */}
-          <div className="mb-4 hidden justify-evenly pt-5 align-middle sm:flex">
+          <div className="mb-4 hidden justify-evenly pt-5 align-middle min-[600px]:flex">
             <span className="italianno-sm ml-4 self-center text-4xl">
               Family Recipes
             </span>
-            <NavLink
-              to="/recipes/personal"
-              className={({ isActive }) =>
-                [
-                  "group",
-                  "self-end",
-                  "rounded-full",
-                  "border-none",
-                  "p-2",
-                  "text-xs",
-                  "focus-visible:outline-amber-500",
-                  "sm:text-base",
-                  isActive ? "bg-amber-400" : "",
-                ].join(" ")
-              }
-            >
-              personal recipes
-              <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-            </NavLink>
-            <NavLink
-              to="/recipes/public"
-              className={({ isActive }) =>
-                [
-                  "group",
-                  "self-end",
-                  "rounded-full",
-                  "border-none",
-                  "p-2",
-                  "text-xs",
-                  "focus-visible:outline-amber-500",
-                  "sm:text-base",
-                  isActive ? "bg-amber-400" : "",
-                ].join(" ")
-              }
-            >
-              public recipes
-              <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-            </NavLink>
-            <NavLink
-              to="/recipes/all"
-              className={({ isActive }) =>
-                [
-                  "group",
-                  "self-end",
-                  "rounded-full",
-                  "border-none",
-                  "p-2",
-                  "text-xs",
-                  "focus-visible:outline-amber-500",
-                  "sm:text-base",
-                  isActive ? "bg-amber-400" : "",
-                ].join(" ")
-              }
-            >
-              every recipe
-              <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
-            </NavLink>
+            <RecipePageLink
+              mobile={false}
+              handleOnClick={undefined}
+              goTo="/recipes/personal"
+              content="personal recipes"
+            />
+            <RecipePageLink
+              mobile={false}
+              handleOnClick={undefined}
+              goTo="/recipes/public"
+              content="public recipes"
+            />
+            <RecipePageLink
+              mobile={false}
+              handleOnClick={undefined}
+              goTo="/recipes/all"
+              content="every recipe"
+            />
             <button
               onClick={handleSignOut}
               className="group mr-4 rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
