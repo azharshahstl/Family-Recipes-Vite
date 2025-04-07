@@ -1,11 +1,42 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { auth } from "../../config/firebase.ts";
+import { auth, db } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
-import { useState } from "react";
+import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react";
 import RecipePageLink from "../ui/links/ForRecipePage.tsx";
+
+export interface RecipesContext {
+  recipes: DocumentData;
+  isLoading: boolean;
+}
 
 const RecipeLayout = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [recipes, setRecipes] = useState<DocumentData>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const recipesCollectionRef = collection(db, "recipes");
+
+  useEffect(() => {
+    setIsLoading(true);
+    const getRecipes = async () => {
+      try {
+        const recipeData = await getDocs(recipesCollectionRef);
+        const allRecipes = recipeData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setRecipes(allRecipes);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getRecipes();
+  }, []);
+
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -148,7 +179,7 @@ const RecipeLayout = () => {
 
         <hr className="mx-1 mt-8 h-[2px] rounded-sm border-0 bg-gray-900 dark:bg-gray-300"></hr>
       </div>
-      <Outlet />
+      <Outlet context={{ recipes, isLoading }} />
     </>
   );
 };

@@ -1,34 +1,11 @@
-import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { DocumentData } from "firebase/firestore";
 import Loader from "../loader/Loader.tsx";
-import { db } from "../../config/firebase.ts";
-import { useEffect, useState } from "react";
 import CardContainer from "./card-container/CardContainer.tsx";
+import { useOutletContext } from "react-router-dom";
+import { RecipesContext } from "../Layouts/RecipeLayout.tsx";
 
 const All = () => {
-  const [recipes, setRecipes] = useState<DocumentData>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const recipesCollectionRef = collection(db, "recipes");
-
-  useEffect(() => {
-    setIsLoading(true);
-    const getRecipes = async () => {
-      try {
-        const recipeData = await getDocs(recipesCollectionRef);
-        const allRecipes = recipeData.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-
-        setRecipes(allRecipes);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getRecipes();
-  }, []);
+  const { isLoading, recipes } = useOutletContext<RecipesContext>();
 
   const renderRecipes = () => {
     {

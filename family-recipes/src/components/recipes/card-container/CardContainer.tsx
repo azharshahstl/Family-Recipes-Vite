@@ -1,9 +1,9 @@
 import FooterPill from "./footer-pills/FooterPill";
 import Ingredients from "./ingredients/Ingredients";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
-import { GiCampCookingPot } from "react-icons/gi";
 import { RxTimer } from "react-icons/rx";
 import { SiLevelsdotfyi } from "react-icons/si";
+import { LuCookingPot } from "react-icons/lu";
 
 interface CardProps {
   cookTime: string;
@@ -51,7 +51,7 @@ const CardContainer = (props: CardProps) => {
             <RxTimer style={{ display: "inline" }} />
           </FooterPill>
           <FooterPill value={cookTime}>
-            <GiCampCookingPot style={{ display: "inline" }} />
+            <LuCookingPot style={{ display: "inline" }} />
           </FooterPill>
         </div>
       </div>

@@ -22,7 +22,6 @@ const Home = () => {
         setCurrentUser(userEmail);
         navigate("/recipes/all");
       }
-      // setIsLoading(false);
     });
   };
 
