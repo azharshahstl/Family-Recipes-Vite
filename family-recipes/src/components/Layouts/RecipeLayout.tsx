@@ -2,20 +2,26 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { auth, db } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { collection, DocumentData, getDocs } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, useRef } from "react";
 import RecipePageLink from "../ui/links/ForRecipePage.tsx";
 
 export interface RecipesContext {
   recipes: DocumentData;
   isLoading: boolean;
+  searchParams: string;
+  isSearching: boolean;
 }
 
 const RecipeLayout = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [recipes, setRecipes] = useState<DocumentData>([]);
+  const [searchParams, setSearchParams] = useState<string>("");
+  const [isSearching, setIsSearching] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const recipesCollectionRef = collection(db, "recipes");
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,6 +31,7 @@ const RecipeLayout = () => {
         const allRecipes = recipeData.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
+          uid: auth.currentUser!.uid,
         }));
 
         setRecipes(allRecipes);
@@ -45,6 +52,23 @@ const RecipeLayout = () => {
       await navigate("/");
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const clearSearch = () => {
+    setIsSearching(false);
+
+    inputRef.current!.value = "";
+  };
+
+  const handleSearchParams = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      setIsSearching(false);
+    } else {
+      const lowerCaseSearch = e.target.value.toLowerCase();
+
+      setSearchParams(lowerCaseSearch);
+      setIsSearching(true);
     }
   };
 
@@ -142,13 +166,15 @@ const RecipeLayout = () => {
           </div>
         </nav>
 
-        <form className="mx-auto flex max-w-sm items-center">
+        <div className="relative mx-auto flex max-w-sm items-center">
           <label htmlFor="simple-search" className="sr-only">
             Search
           </label>
           <div className="relative w-full">
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3"></div>
             <input
+              onChange={handleSearchParams}
+              ref={inputRef}
               type="text"
               id="simple-search"
               className="block w-full rounded-full border border-amber-300 bg-gray-50 p-1 ps-10 text-sm text-gray-900 focus-visible:outline-amber-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -156,30 +182,18 @@ const RecipeLayout = () => {
             />
           </div>
           <button
-            type="submit"
-            className="ms-2 rounded-full border border-amber-300 bg-gray-50 p-2.5 text-sm font-medium hover:bg-amber-100 focus-visible:outline-amber-500"
+            onClick={clearSearch}
+            type="button"
+            className="relative right-6 cursor-pointer"
           >
-            <svg
-              className="h-3 w-3 text-black"
-              aria-hidden="true"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-            <span className="sr-only">Search</span>
+            &times;
+            <span className="sr-only"> Clear Search</span>
           </button>
-        </form>
+        </div>
 
         <hr className="mx-1 mt-8 h-[2px] rounded-sm border-0 bg-gray-900 dark:bg-gray-300"></hr>
       </div>
-      <Outlet context={{ recipes, isLoading }} />
+      <Outlet context={{ recipes, isLoading, searchParams, isSearching }} />
     </>
   );
 };
