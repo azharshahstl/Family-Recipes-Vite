@@ -34,7 +34,7 @@ const Home = () => {
     <FamilyRecipesContext.Provider
       value={{ currentUser, isLoading, setIsLoading }}
     >
-      <div className="italianno-sm flex h-lvh w-full flex-col items-center justify-center bg-[url(/paper.jpg)]">
+      <div className="italianno-sm flex h-dvh w-full flex-col items-center justify-center bg-[url(/paper.jpg)]">
         <div className="mb-14 text-center leading-none sm:mb-4 sm:text-9xl sm:leading-48">
           Family Recipes
         </div>
