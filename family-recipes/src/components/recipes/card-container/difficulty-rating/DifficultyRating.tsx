@@ -6,7 +6,7 @@ interface DiffcultyRatingProps {
 
 const DifficultyRating = (props: DiffcultyRatingProps) => {
   const { rating } = props;
-  return <FooterPill descriptor="difficulty" value={rating} />;
+  return <FooterPill value={rating} />;
 };
 
 export default DifficultyRating;
