@@ -4,6 +4,7 @@ import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { RxTimer } from "react-icons/rx";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { LuCookingPot } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 interface CardProps {
   cookTime: string;
@@ -26,39 +27,48 @@ const CardContainer = (props: CardProps) => {
     title,
   } = props;
 
-  return (
-    <div className="m-6">
-      <div
-        tabIndex={0}
-        className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 sm:w-[500px] sm:hover:animate-bounce"
-      >
-        <div className="mb-2 text-xl font-bold">{title}</div>
-        <Ingredients ingredients={ingredients} />
-        <div>
-          <p className="font-semibold text-amber-950">directions:</p>
-          <p className="ml-2 text-base text-gray-950">
-            {directions.length < 150
-              ? directions
-              : directions.substring(0, 100) + "..."}
-          </p>
-        </div>
+  // const navigate = useNavigate();
 
-        <div>
-          <FooterPill value={rating}>
-            <SiLevelsdotfyi style={{ display: "inline" }} />
-          </FooterPill>
-          <FooterPill value={foodCategory}>
-            <MdOutlineLocalGroceryStore style={{ display: "inline" }} />
-          </FooterPill>
-          <FooterPill value={prepTime}>
-            <RxTimer style={{ display: "inline" }} />
-          </FooterPill>
-          <FooterPill value={cookTime}>
-            <LuCookingPot style={{ display: "inline" }} />
-          </FooterPill>
+  // const handleSingleRecipe = () => {
+  //   navigate("3");
+  // };
+
+  return (
+    <Link to="3">
+      <div className="m-6">
+        <div
+          // onClick={handleSingleRecipe}
+          tabIndex={0}
+          className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 sm:w-[500px] sm:hover:animate-bounce"
+        >
+          <div className="mb-2 text-xl font-bold">{title}</div>
+          <Ingredients ingredients={ingredients} />
+          <div>
+            <p className="font-semibold text-amber-950">directions:</p>
+            <p className="ml-2 text-base text-gray-950">
+              {directions.length < 150
+                ? directions
+                : directions.substring(0, 100) + "..."}
+            </p>
+          </div>
+
+          <div>
+            <FooterPill value={rating}>
+              <SiLevelsdotfyi style={{ display: "inline" }} />
+            </FooterPill>
+            <FooterPill value={foodCategory}>
+              <MdOutlineLocalGroceryStore style={{ display: "inline" }} />
+            </FooterPill>
+            <FooterPill value={prepTime}>
+              <RxTimer style={{ display: "inline" }} />
+            </FooterPill>
+            <FooterPill value={cookTime}>
+              <LuCookingPot style={{ display: "inline" }} />
+            </FooterPill>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
