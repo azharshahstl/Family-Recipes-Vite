@@ -166,7 +166,7 @@ const RecipeLayout = () => {
           </div>
         </nav>
 
-        <div className="relative mx-auto flex max-w-sm items-center">
+        <div className="relative mx-auto flex max-w-sm">
           <label htmlFor="simple-search" className="sr-only">
             Search
           </label>
@@ -184,10 +184,10 @@ const RecipeLayout = () => {
           <button
             onClick={clearSearch}
             type="button"
-            className="relative right-6 cursor-pointer"
+            className="relative right-6 bottom-0.75 cursor-pointer rounded-full border-none text-2xl font-thin text-gray-700 focus-visible:outline-amber-500"
           >
             &times;
-            <span className="sr-only"> Clear Search</span>
+            <span className="sr-only">Clear Search</span>
           </button>
         </div>
 
