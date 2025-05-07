@@ -28,7 +28,10 @@ const CardContainer = (props: CardProps) => {
 
   return (
     <div className="m-6">
-      <div className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 sm:w-[500px] sm:hover:animate-bounce">
+      <div
+        tabIndex={0}
+        className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 sm:w-[500px] sm:hover:animate-bounce"
+      >
         <div className="mb-2 text-xl font-bold">{title}</div>
         <Ingredients ingredients={ingredients} />
         <div>
