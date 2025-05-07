@@ -5,7 +5,23 @@ import { useOutletContext } from "react-router-dom";
 import { RecipesContext } from "../Layouts/RecipeLayout.tsx";
 
 const All = () => {
-  const { isLoading, recipes } = useOutletContext<RecipesContext>();
+  const { isLoading, recipes, searchParams, isSearching } =
+    useOutletContext<RecipesContext>();
+
+  console.log(recipes);
+
+  const renderedRecipes = () => {
+    if (!isSearching) return recipes;
+    else {
+      const filteredRecipes = recipes.filter((recipe: DocumentData) => {
+        if (searchParams === "") return recipe;
+        else {
+          return recipe.title.toLowerCase().includes(searchParams);
+        }
+      });
+      return filteredRecipes;
+    }
+  };
 
   const renderRecipes = () => {
     {
@@ -14,7 +30,7 @@ const All = () => {
       } else {
         return (
           <main className="flex flex-wrap items-center justify-center bg-gray-200 p-4">
-            {recipes.map((recipe: DocumentData) => {
+            {renderedRecipes().map((recipe: DocumentData) => {
               return (
                 <CardContainer
                   cookTime={recipe.cookTime}
