@@ -1,56 +1,63 @@
+import { DocumentData } from "firebase/firestore";
+import Loader from "../../loader/Loader.tsx";
+import CardContainer from "../card-container/CardContainer.tsx";
+import { useOutletContext } from "react-router-dom";
+
+import { RecipesContext } from "../../Layouts/RecipeLayout.tsx";
+import { auth } from "../../../config/firebase.ts";
+
 const Personal = () => {
-  return (
-    <>
-      <div className="flex h-screen flex-col bg-gray-200">
-        <main className="flex flex-col items-center justify-center">
-          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
-            <div>
-              <div className="px-6 py-4">
-                <div className="mb-2 text-xl font-bold">The Warmest Sunset</div>
-                <p className="text-base text-gray-950">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                  exercitationem praesentium nihil.
-                </p>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                  #photography
-                </span>
-                <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                  #travel
-                </span>
-                <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                  #winter
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="m-6 max-w-sm overflow-hidden rounded bg-[url(/paper.jpg)] shadow-lg shadow-gray-700 hover:animate-bounce">
-            <div className="px-6 py-4">
-              <div className="mb-2 text-xl font-bold">The Coldest Sunset</div>
-              <p className="text-base text-gray-950">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                #photography
-              </span>
-              <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                #travel
-              </span>
-              <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-                #winter
-              </span>
-            </div>
-          </div>
-        </main>
-      </div>
-    </>
-  );
+  const { isLoading, recipes, searchParams, isSearching } =
+    useOutletContext<RecipesContext>();
+
+  const getPersonalRecipes = (recipes: DocumentData) =>
+    recipes.filter(
+      (recipe: DocumentData) => recipe.uid === auth.currentUser!.uid,
+    );
+
+  const renderedRecipes = () => {
+    if (!isSearching) return getPersonalRecipes(recipes);
+    else {
+      const filteredRecipes = getPersonalRecipes(recipes).filter(
+        (recipe: DocumentData) => {
+          if (searchParams === "") return recipe;
+          else {
+            return recipe.title.toLowerCase().includes(searchParams);
+          }
+        },
+      );
+      return filteredRecipes;
+    }
+  };
+
+  const renderRecipes = () => {
+    {
+      if (isLoading) {
+        return <Loader />;
+      } else {
+        return (
+          <main className="flex flex-wrap items-center justify-center bg-gray-200 p-4">
+            {renderedRecipes().map((recipe: DocumentData) => {
+              return (
+                <CardContainer
+                  cookTime={recipe.cookTime}
+                  directions={recipe.directions}
+                  ingredients={recipe.ingredients}
+                  key={recipe.id}
+                  foodCategory={recipe.foodCategory}
+                  prepTime={recipe.prepTime}
+                  rating={recipe.difficultyRating}
+                  title={recipe.title}
+                />
+              );
+            })}
+          </main>
+        );
+      }
+    }
+  };
+
+  return renderRecipes();
 };
 
 export default Personal;
