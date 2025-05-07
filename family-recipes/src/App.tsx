@@ -1,19 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import DifficultyRatingScore from "./components/difficulty-rating/DiffcultyRatingScore";
-import "./App.css";
-import Auth from "./components/auth/Auth";
-import { auth, db } from "./config/firebase";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
 import Home from "./components/home/Home";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "./components/not-found/NotFound";
 import All from "./components/recipes/All";
 import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
 import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
@@ -24,6 +10,8 @@ import Personal from "./components/recipes/personal/Personal";
 import Public from "./components/recipes/public/Public";
 import RecipeLayout from "./components/Layouts/RecipeLayout";
 import Test from "./components/loader/Test";
+import Single from "./components/recipes/Single";
+
 function App() {
   // const [recipes, setRecipes] = useState([]);
 
@@ -124,6 +112,7 @@ function App() {
       <Route path="/recipes" element={<RecipeLayout />}>
         <Route path="all" element={<All />} />
         <Route path="personal" element={<Personal />} />
+
         <Route path="public" element={<Public />} />
       </Route>
       <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
@@ -131,6 +120,7 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/password-reset-modal" element={<PasswordResetModal />} />
       <Route path="/test" element={<Test />} />
+      <Route path="/recipes/personal/:id" element={<h1>hello</h1>} />
       <Route path="*" element={<Loader />} />
     </Routes>
   );
