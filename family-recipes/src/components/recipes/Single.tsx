@@ -1,5 +1,50 @@
+import { useOutletContext, useParams } from "react-router-dom";
+import CardContainer from "./card-container/CardContainer";
+import { RecipesContext } from "../Layouts/RecipeLayout";
+import { DocumentData } from "firebase/firestore";
+import Loader from "../loader/Loader";
+
 const Single = () => {
-  return <h1>Hello</h1>;
+  const { id } = useParams();
+
+  const { recipes, isLoading } = useOutletContext<RecipesContext>();
+
+  const renderedRecipe = () => {
+    const recipe = recipes.filter((recipe: DocumentData) => recipe.id === id);
+    return recipe;
+  };
+
+  const renderRecipe = () => {
+    {
+      if (isLoading) {
+        return <Loader />;
+      } else {
+        return (
+          <main className="h-dvh bg-gray-200 p-4 pt-6">
+            {renderedRecipe().map((recipe: DocumentData) => {
+              return (
+                <CardContainer
+                  cookTime={recipe.cookTime}
+                  directions={recipe.directions}
+                  id={recipe.id}
+                  ingredients={recipe.ingredients}
+                  key={recipe.id}
+                  foodCategory={recipe.foodCategory}
+                  prepTime={recipe.prepTime}
+                  rating={recipe.difficultyRating}
+                  showFullInfo={true}
+                  styles={"w-full"}
+                  title={recipe.title}
+                />
+              );
+            })}
+          </main>
+        );
+      }
+    }
+  };
+
+  return renderRecipe();
 };
 
 export default Single;
