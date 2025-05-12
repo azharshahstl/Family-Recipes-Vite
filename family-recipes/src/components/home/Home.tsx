@@ -18,7 +18,6 @@ const Home = () => {
       setIsLoading(true);
       const userEmail = result.user.email;
       if (userEmail) {
-        console.log("email", result);
         setCurrentUser(userEmail);
         navigate("/recipes/all");
       }
