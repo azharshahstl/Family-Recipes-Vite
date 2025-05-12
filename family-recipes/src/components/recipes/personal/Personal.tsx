@@ -42,11 +42,13 @@ const Personal = () => {
                 <CardContainer
                   cookTime={recipe.cookTime}
                   directions={recipe.directions}
+                  id={recipe.id}
                   ingredients={recipe.ingredients}
                   key={recipe.id}
                   foodCategory={recipe.foodCategory}
                   prepTime={recipe.prepTime}
                   rating={recipe.difficultyRating}
+                  styles={"sm:hover:animate-pulse w-[500px]"}
                   title={recipe.title}
                 />
               );
