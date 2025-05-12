@@ -112,7 +112,7 @@ function App() {
       <Route path="/recipes" element={<RecipeLayout />}>
         <Route path="all" element={<All />} />
         <Route path="personal" element={<Personal />} />
-
+        <Route path=":id" element={<Single />} />
         <Route path="public" element={<Public />} />
       </Route>
       <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
@@ -120,7 +120,7 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/password-reset-modal" element={<PasswordResetModal />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/recipes/personal/:id" element={<h1>hello</h1>} />
+
       <Route path="*" element={<Loader />} />
     </Routes>
   );
