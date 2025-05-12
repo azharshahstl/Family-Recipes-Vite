@@ -193,7 +193,14 @@ const RecipeLayout = () => {
 
         <hr className="mx-1 mt-8 h-[2px] rounded-sm border-0 bg-gray-900 dark:bg-gray-300"></hr>
       </div>
-      <Outlet context={{ recipes, isLoading, searchParams, isSearching }} />
+      <Outlet
+        context={{
+          recipes,
+          isLoading,
+          searchParams,
+          isSearching,
+        }}
+      />
     </>
   );
 };
