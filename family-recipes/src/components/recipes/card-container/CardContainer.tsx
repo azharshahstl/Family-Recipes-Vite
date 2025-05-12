@@ -13,7 +13,10 @@ interface CardProps {
   ingredients: string[];
   prepTime: string;
   rating: string;
+  showFullInfo?: boolean;
+  styles?: string;
   title: string;
+  id?: string;
 }
 
 const CardContainer = (props: CardProps) => {
@@ -21,34 +24,66 @@ const CardContainer = (props: CardProps) => {
     cookTime,
     directions,
     foodCategory,
+    id,
     ingredients,
     prepTime,
     rating,
+    showFullInfo = false,
+    styles = "",
     title,
   } = props;
 
-  // const navigate = useNavigate();
-
-  // const handleSingleRecipe = () => {
-  //   navigate("3");
-  // };
-
-  return (
-    <Link to="3">
-      <div className="m-6">
+  return showFullInfo ? (
+    <div className="m-6">
+      <div
+        tabIndex={-1}
+        className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
+      >
+        <div className="mb-2 text-xl font-bold">{title}</div>
+        <Ingredients showFullInfo={showFullInfo} ingredients={ingredients} />
+        <div>
+          <p className="font-semibold text-amber-950">directions:</p>
+          <p className="ml-2 text-base text-gray-950">
+            {directions.length < 150
+              ? directions
+              : showFullInfo
+                ? directions
+                : directions.substring(0, 100) + "..."}
+          </p>
+        </div>
+        <div>
+          <FooterPill value={rating}>
+            <SiLevelsdotfyi style={{ display: "inline" }} />
+          </FooterPill>
+          <FooterPill value={foodCategory}>
+            <MdOutlineLocalGroceryStore style={{ display: "inline" }} />
+          </FooterPill>
+          <FooterPill value={prepTime}>
+            <RxTimer style={{ display: "inline" }} />
+          </FooterPill>
+          <FooterPill value={cookTime}>
+            <LuCookingPot style={{ display: "inline" }} />
+          </FooterPill>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="m-6">
+      <Link to={`/recipes/${id}`}>
         <div
-          // onClick={handleSingleRecipe}
           tabIndex={0}
-          className="sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 sm:w-[500px] sm:hover:animate-bounce"
+          className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
         >
           <div className="mb-2 text-xl font-bold">{title}</div>
-          <Ingredients ingredients={ingredients} />
+          <Ingredients showFullInfo={showFullInfo} ingredients={ingredients} />
           <div>
             <p className="font-semibold text-amber-950">directions:</p>
             <p className="ml-2 text-base text-gray-950">
               {directions.length < 150
                 ? directions
-                : directions.substring(0, 100) + "..."}
+                : showFullInfo
+                  ? directions
+                  : directions.substring(0, 100) + "..."}
             </p>
           </div>
 
@@ -67,8 +102,8 @@ const CardContainer = (props: CardProps) => {
             </FooterPill>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
