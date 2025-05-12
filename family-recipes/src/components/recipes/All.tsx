@@ -8,8 +8,6 @@ const All = () => {
   const { isLoading, recipes, searchParams, isSearching } =
     useOutletContext<RecipesContext>();
 
-  console.log(recipes);
-
   const renderedRecipes = () => {
     if (!isSearching) return recipes;
     else {
@@ -35,11 +33,13 @@ const All = () => {
                 <CardContainer
                   cookTime={recipe.cookTime}
                   directions={recipe.directions}
+                  id={recipe.id}
                   ingredients={recipe.ingredients}
                   key={recipe.id}
                   foodCategory={recipe.foodCategory}
                   prepTime={recipe.prepTime}
                   rating={recipe.difficultyRating}
+                  styles={"sm:hover:animate-pulse w-[500px]"}
                   title={recipe.title}
                 />
               );
