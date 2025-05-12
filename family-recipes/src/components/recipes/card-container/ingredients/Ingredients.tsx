@@ -1,12 +1,13 @@
 interface IngredientsProps {
   ingredients: string[];
+  showFullInfo: boolean;
 }
 
 const Ingredients = (props: IngredientsProps) => {
-  const { ingredients } = props;
+  const { ingredients, showFullInfo } = props;
 
   const createIngredientsString = () => {
-    if (ingredients.length > 5) {
+    if (ingredients.length > 5 && !showFullInfo) {
       const truncatedString = ingredients.slice(0, 5);
       return truncatedString.join(" | ").concat(" ...");
     } else {
