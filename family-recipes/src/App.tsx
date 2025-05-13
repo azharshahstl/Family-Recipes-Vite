@@ -1,6 +1,5 @@
 import Home from "./components/home/Home";
 import { Route, Routes } from "react-router-dom";
-import All from "./components/recipes/All";
 import SignInWithEmail from "./components/login-and-signup/SignInWithEmail";
 import SignUpWithEmail from "./components/login-and-signup/SignUpWithEmail";
 import ResetPassword from "./components/login-and-signup/ResetPassword";
@@ -11,6 +10,7 @@ import Public from "./components/recipes/public/Public";
 import RecipeLayout from "./components/Layouts/RecipeLayout";
 import Test from "./components/loader/Test";
 import Single from "./components/recipes/Single";
+import New from "./components/recipes/New";
 
 function App() {
   // const [recipes, setRecipes] = useState([]);
@@ -110,10 +110,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/recipes" element={<RecipeLayout />}>
-        <Route path="all" element={<All />} />
-        <Route path="personal" element={<Personal />} />
+        <Route path="private" element={<Personal />} />
         <Route path=":id" element={<Single />} />
         <Route path="public" element={<Public />} />
+        <Route path="new" element={<New />} />
       </Route>
       <Route path="/sign-in-with-email" element={<SignInWithEmail />} />
       <Route path="/create-account" element={<SignUpWithEmail />} />
