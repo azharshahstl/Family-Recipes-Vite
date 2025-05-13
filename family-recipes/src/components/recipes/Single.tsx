@@ -7,11 +7,22 @@ import Loader from "../loader/Loader";
 const Single = () => {
   const { id } = useParams();
 
-  const { recipes, isLoading } = useOutletContext<RecipesContext>();
+  const { recipes, isLoading, currentUser } =
+    useOutletContext<RecipesContext>();
 
   const renderedRecipe = () => {
     const recipe = recipes.filter((recipe: DocumentData) => recipe.id === id);
     return recipe;
+  };
+
+  const isCurrentUser = () => {
+    const recipe = recipes.filter((recipe: DocumentData) => recipe.id === id);
+
+    if (recipe[0].uid === currentUser) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const renderRecipe = () => {
@@ -20,7 +31,7 @@ const Single = () => {
         return <Loader />;
       } else {
         return (
-          <main className="h-dvh bg-gray-200 p-4 pt-6">
+          <main className="h-dvh bg-gray-200 p-4">
             {renderedRecipe().map((recipe: DocumentData) => {
               return (
                 <CardContainer
@@ -30,6 +41,7 @@ const Single = () => {
                   ingredients={recipe.ingredients}
                   key={recipe.id}
                   foodCategory={recipe.foodCategory}
+                  ownsRecipe={isCurrentUser()}
                   prepTime={recipe.prepTime}
                   rating={recipe.difficultyRating}
                   showFullInfo={true}
