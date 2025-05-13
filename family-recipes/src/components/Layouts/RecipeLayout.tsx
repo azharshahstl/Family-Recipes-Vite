@@ -3,9 +3,11 @@ import { auth, db } from "../../config/firebase.ts";
 import { signOut } from "firebase/auth";
 import { collection, DocumentData, getDocs } from "firebase/firestore";
 import { useState, useEffect, ChangeEvent, useRef } from "react";
+import { Link } from "react-router-dom";
 import RecipePageLink from "../ui/links/ForRecipePage.tsx";
 
 export interface RecipesContext {
+  currentUser: string;
   recipes: DocumentData;
   isLoading: boolean;
   searchParams: string;
@@ -18,6 +20,7 @@ const RecipeLayout = () => {
   const [searchParams, setSearchParams] = useState<string>("");
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState("");
 
   const recipesCollectionRef = collection(db, "recipes");
 
@@ -36,6 +39,7 @@ const RecipeLayout = () => {
 
         setRecipes(allRecipes);
         setIsLoading(false);
+        setCurrentUser(auth.currentUser!.uid);
       } catch (err) {
         console.log(err);
       }
@@ -74,7 +78,7 @@ const RecipeLayout = () => {
 
   return (
     <>
-      <div className="sticky top-0 w-full bg-gray-200">
+      <div className="sticky top-0 z-10 w-full bg-gray-200">
         <nav>
           {/* Mobile Menu */}
           <section className="flex-row-reverse p-4 min-[600px]:hidden">
@@ -140,8 +144,8 @@ const RecipeLayout = () => {
             <RecipePageLink
               mobile={false}
               handleOnClick={undefined}
-              goTo="/recipes/personal"
-              content="personal recipes"
+              goTo="/recipes/private"
+              content="private recipes"
             />
             <RecipePageLink
               mobile={false}
@@ -149,12 +153,7 @@ const RecipeLayout = () => {
               goTo="/recipes/public"
               content="public recipes"
             />
-            <RecipePageLink
-              mobile={false}
-              handleOnClick={undefined}
-              goTo="/recipes/all"
-              content="every recipe"
-            />
+
             <button
               onClick={handleSignOut}
               className="group mr-4 rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
@@ -190,8 +189,17 @@ const RecipeLayout = () => {
             <span className="sr-only">Clear Search</span>
           </button>
         </div>
-
-        <hr className="mx-1 mt-8 h-[2px] rounded-sm border-0 bg-gray-900 dark:bg-gray-300"></hr>
+        <div className="flex">
+          <Link
+            to={"/recipes/new"}
+            className="group mr-auto ml-auto rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
+            type="button"
+          >
+            create a recipe
+            <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
+          </Link>
+        </div>
+        <hr className="mx-1 mt-1 h-[2px] rounded-sm border-0 bg-gray-900 dark:bg-gray-300"></hr>
       </div>
       <Outlet
         context={{
@@ -199,6 +207,7 @@ const RecipeLayout = () => {
           isLoading,
           searchParams,
           isSearching,
+          currentUser,
         }}
       />
     </>
