@@ -11,6 +11,7 @@ interface CardProps {
   directions: string;
   foodCategory: string;
   ingredients: string[];
+  ownsRecipe: boolean;
   prepTime: string;
   rating: string;
   showFullInfo?: boolean;
@@ -34,12 +35,15 @@ const CardContainer = (props: CardProps) => {
   } = props;
 
   return showFullInfo ? (
-    <div className="m-6">
+    <div className="">
       <div
         tabIndex={-1}
-        className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
+        className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-auto flex-col justify-around overflow-y-auto rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
       >
-        <div className="mb-2 text-xl font-bold">{title}</div>
+        <div>
+          <div className="text-xl font-bold">{title}</div>
+        </div>
+
         <Ingredients showFullInfo={showFullInfo} ingredients={ingredients} />
         <div>
           <p className="font-semibold text-amber-950">directions:</p>
@@ -72,9 +76,12 @@ const CardContainer = (props: CardProps) => {
       <Link to={`/recipes/${id}`}>
         <div
           tabIndex={0}
-          className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-[380px] flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
+          className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-auto flex-col justify-around rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 sm:w-[625px] ${styles}`}
         >
-          <div className="mb-2 text-xl font-bold">{title}</div>
+          <div>
+            <div className="text-xl font-bold">{title}</div>
+          </div>
+
           <Ingredients showFullInfo={showFullInfo} ingredients={ingredients} />
           <div>
             <p className="font-semibold text-amber-950">directions:</p>
