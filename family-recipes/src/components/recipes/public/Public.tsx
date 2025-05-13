@@ -5,7 +5,7 @@ import { useOutletContext } from "react-router-dom";
 import { RecipesContext } from "../../Layouts/RecipeLayout.tsx";
 
 const Public = () => {
-  const { isLoading, recipes, searchParams, isSearching } =
+  const { currentUser, isLoading, recipes, searchParams, isSearching } =
     useOutletContext<RecipesContext>();
 
   const getPublicRecipes = (recipes: DocumentData) =>
@@ -26,6 +26,18 @@ const Public = () => {
     }
   };
 
+  const isCurrentUser = () => {
+    const recipe = recipes.filter(
+      (recipe: DocumentData) => recipe.uid === currentUser,
+    );
+
+    if (recipe.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const renderRecipes = () => {
     {
       if (isLoading) {
@@ -42,6 +54,7 @@ const Public = () => {
                   ingredients={recipe.ingredients}
                   key={recipe.id}
                   foodCategory={recipe.foodCategory}
+                  ownsRecipe={isCurrentUser()}
                   prepTime={recipe.prepTime}
                   rating={recipe.difficultyRating}
                   styles={"sm:hover:animate-pulse w-[500px]"}

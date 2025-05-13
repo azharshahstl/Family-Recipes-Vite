@@ -46,9 +46,10 @@ const Personal = () => {
                   ingredients={recipe.ingredients}
                   key={recipe.id}
                   foodCategory={recipe.foodCategory}
+                  ownsRecipe={true}
                   prepTime={recipe.prepTime}
                   rating={recipe.difficultyRating}
-                  styles={"sm:hover:animate-pulse w-[500px]"}
+                  styles={"sm:hover:animate-pulse"}
                   title={recipe.title}
                 />
               );
