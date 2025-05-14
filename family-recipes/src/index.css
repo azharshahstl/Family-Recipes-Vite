@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #e5e7eb;
+}
+
 @layer components {
   .italianno-sm {
     font-family: "Italianno", cursive;
