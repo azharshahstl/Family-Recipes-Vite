@@ -4,7 +4,7 @@ import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { RxTimer } from "react-icons/rx";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { LuCookingPot } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface CardProps {
   cookTime: string;
@@ -35,6 +35,12 @@ const CardContainer = (props: CardProps) => {
     title,
   } = props;
 
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
+  };
+
   return showFullInfo ? (
     <div className="">
       <div
@@ -46,6 +52,7 @@ const CardContainer = (props: CardProps) => {
             <div className="text-xl font-bold">{title}</div>
             <div>
               <button
+                onClick={handleEdit}
                 className="group rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
                 type="button"
               >
