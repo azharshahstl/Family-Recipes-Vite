@@ -11,6 +11,7 @@ import RecipeLayout from "./components/Layouts/RecipeLayout";
 import Test from "./components/loader/Test";
 import Single from "./components/recipes/Single";
 import New from "./components/recipes/New";
+import Edit from "./components/recipes/Edit";
 
 function App() {
   // const [recipes, setRecipes] = useState([]);
@@ -111,6 +112,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/recipes" element={<RecipeLayout />}>
         <Route path="private" element={<Personal />} />
+        <Route path=":id/edit" element={<Edit />} />
         <Route path=":id" element={<Single />} />
         <Route path="public" element={<Public />} />
         <Route path="new" element={<New />} />
