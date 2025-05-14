@@ -78,7 +78,7 @@ const RecipeLayout = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-10 w-full bg-gray-200">
+      <div className="sticky top-0 z-100 w-full bg-gray-200">
         <nav>
           {/* Mobile Menu */}
           <section className="flex-row-reverse p-4 min-[600px]:hidden">
@@ -112,18 +112,13 @@ const RecipeLayout = () => {
               <section className="flex min-h-[250px] flex-col justify-between align-middle">
                 <RecipePageLink
                   handleOnClick={() => setIsNavOpen(false)}
-                  goTo="/recipes/personal"
-                  content="personal recipes"
+                  goTo="/recipes/private"
+                  content="private recipes"
                 />
                 <RecipePageLink
                   handleOnClick={() => setIsNavOpen(false)}
                   goTo="/recipes/public"
                   content="public recipes"
-                />
-                <RecipePageLink
-                  handleOnClick={() => setIsNavOpen(false)}
-                  goTo="/recipes/all"
-                  content="every recipe"
                 />
                 <button
                   onClick={handleSignOut}
