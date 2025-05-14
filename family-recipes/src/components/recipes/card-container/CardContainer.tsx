@@ -27,6 +27,7 @@ const CardContainer = (props: CardProps) => {
     foodCategory,
     id,
     ingredients,
+    ownsRecipe = false,
     prepTime,
     rating,
     showFullInfo = false,
@@ -40,10 +41,31 @@ const CardContainer = (props: CardProps) => {
         tabIndex={-1}
         className={`sm:max-h[550px] flex max-h-[550px] min-h-[500px] w-auto flex-col justify-around overflow-y-auto rounded bg-[url(/paper.jpg)] px-6 py-4 shadow-lg shadow-gray-700 focus-visible:outline-amber-500 ${styles}`}
       >
-        <div>
-          <div className="text-xl font-bold">{title}</div>
-        </div>
-
+        {ownsRecipe ? (
+          <div className="flex items-center justify-between">
+            <div className="text-xl font-bold">{title}</div>
+            <div>
+              <button
+                className="group rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
+                type="button"
+              >
+                edit
+                <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
+              </button>
+              <button
+                className="group rounded-full border-1 border-none p-2 text-[15px] focus-visible:outline-amber-500 sm:text-[20px]"
+                type="button"
+              >
+                delete
+                <span className="block h-0.5 max-w-0 bg-amber-600 transition-all duration-600 group-hover:max-w-full"></span>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="text-xl font-bold">{title}</div>
+          </div>
+        )}
         <Ingredients showFullInfo={showFullInfo} ingredients={ingredients} />
         <div>
           <p className="font-semibold text-amber-950">directions:</p>
