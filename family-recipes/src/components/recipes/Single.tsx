@@ -16,9 +16,9 @@ const Single = () => {
   };
 
   const isCurrentUser = () => {
-    const recipe = recipes.filter((recipe: DocumentData) => recipe.id === id);
+    const recipe = recipes.find((recipe: DocumentData) => recipe.id === id);
 
-    if (recipe[0].uid === currentUser) {
+    if (recipe.uid === currentUser) {
       return true;
     } else {
       return false;
@@ -31,7 +31,7 @@ const Single = () => {
         return <Loader />;
       } else {
         return (
-          <main className="h-dvh bg-gray-200 p-4">
+          <main className="h-dvh p-4">
             {renderedRecipe().map((recipe: DocumentData) => {
               return (
                 <CardContainer
